@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.CityViewCell"
+             xmlns:controls="clr-namespace:WeatherApp.Controls">
+    <ViewCell.View>
+        <StackLayout BackgroundColor="White" Margin="10"
+                     Orientation="Horizontal">
+            <Image Source="{Binding SmallImageUrl}" WidthRequest="80" HeightRequest="380"/>
+            <StackLayout Orientation="Vertical"
+                         VerticalOptions="FillAndExpand">
+                <Label Text="{Binding Name}"
+                       TextColor="Black"
+                       LineBreakMode="TailTruncation"/>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Longitude: "
+                               TextColor="Black"/>
+                        <Label Text="{Binding Coordinates.Longitude, Mode = OneWay}"
+                               TextColor="Black"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Latitude: "
+                               TextColor="Black"/>
+                        <Label Text="{Binding Coordinates.Latitude, Mode = OneWay}"
+                               TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding Weather, Mode=OneWay}"
+                       TextColor="Black"/>
+                <controls:MultiLineLabel 
+                        Text="{Binding Description}"
+			            VerticalOptions="Center"
+			            LineBreakMode="TailTruncation"
+			            Lines="2"/>
+            </StackLayout>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>
