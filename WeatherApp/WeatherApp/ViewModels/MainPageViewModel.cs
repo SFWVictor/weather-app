@@ -20,10 +20,8 @@
 
         public MainPageViewModel()
         {
-            _cities = new ObservableCollection<CityViewModel>()
-            {
-                new CityViewModel(1, "name", new Coordinates(0, 0), "asd", "http://bipbap.ru/wp-content/uploads/2017/04/72fqw2qq3kxh.jpg")
-            };
+            _cities = new ObservableCollection<CityViewModel>();
+            LoadCities();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,15 +72,20 @@
             IsBusy = true;
             LoadCitiesCommand.ChangeCanExecute();
 
-            _cities.Clear();
-            var loadedObjects = LoadCities();
-            loadedObjects.ForEach((obj) => { _cities.Add(obj); });
+            LoadCities();
 
             IsBusy = false;
             LoadCitiesCommand.ChangeCanExecute();
         }
 
-        private IEnumerable<CityViewModel> LoadCities()
+        private void LoadCities()
+        {
+            _cities.Clear();
+            var loadedObjects = GetCities();
+            loadedObjects.ForEach((obj) => { _cities.Add(obj); });
+        }
+
+        private IEnumerable<CityViewModel> GetCities()
         {
             var readObjects = JsonDeserializer.LoadFromJson<City>(FileName);
             return readObjects.Select((city) => { return new CityViewModel(city); });

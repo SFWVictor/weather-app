@@ -1,5 +1,6 @@
 ﻿namespace WeatherApp.ViewModels
 {
+    using System.Linq;
     using WeatherApp.Models;
     using WeatherApp.Services;
 
@@ -15,11 +16,11 @@
         {
         }
 
-        public string Weather
+        public string WeatherMain
         {
             get
             {
-                return WeatherService.GetWeather(Id);
+                return WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
             }
         }
     }
