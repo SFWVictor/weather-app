@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace WeatherApp.Views
+﻿namespace WeatherApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SettingsPage : ContentPage
-	{
-		public SettingsPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    using WeatherApp.Helpers.Converters;
+    using WeatherApp.Helpers.AppSettings;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SettingsPage : ContentPage
+    {
+        public SettingsPage()
+        {
+            InitializeComponent();
+
+            BindingContext = Settings.Instance;
+            PickerFontSize.SetBinding(Picker.SelectedIndexProperty, new Binding("SelectedFontSize", BindingMode.Default, new IntEnumConverter()));
+        }
+    }
 }

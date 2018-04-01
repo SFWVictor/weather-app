@@ -4,7 +4,32 @@
              x:Class="WeatherApp.Views.SettingsPage">
     <ContentPage.Content>
         <StackLayout>
-            
+            <StackLayout>
+                <Label x:Name="LabelFontColor" Text="Font color" 
+                       TextColor="{Binding FontColor}"></Label>
+                <Picker x:Name="PickerFontColor"
+                        ItemsSource="{Binding Colors}" 
+                        SelectedItem="{Binding FontColor}" 
+                        TextColor="{Binding FontColor}">
+                </Picker>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Language" TextColor="{Binding FontColor}"></Label>
+                <Picker ItemsSource="{Binding Locales}" 
+                        SelectedItem="{Binding CurrentLocale}" 
+                        ItemDisplayBinding="{Binding Name}"
+                        TextColor="{Binding FontColor}">
+                </Picker>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Font size" TextColor="{Binding FontColor}"></Label>
+                <Picker x:Name="PickerFontSize"
+                        ItemsSource="{Binding FontSizeNames}" 
+                        SelectedIndex="{Binding FontSize}" 
+                        TextColor="{Binding FontColor}">
+                </Picker>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+    
