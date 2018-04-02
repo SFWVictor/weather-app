@@ -7,10 +7,12 @@
 
   <ItemGroup>
     <None Remove="Resources\cities.json" />
+    <None Remove="Resources\locales.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\cities.json" />
+    <EmbeddedResource Include="Resources\locales.json" />
   </ItemGroup>
 
   <ItemGroup>

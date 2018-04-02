@@ -5,28 +5,34 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label x:Name="LabelFontColor" Text="Font color" 
-                       TextColor="{Binding FontColor}"></Label>
+                <Label Text="Font color" 
+                       TextColor="{Binding CurrentFontColor}"
+                       FontSize="{Binding CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontColor"
-                        ItemsSource="{Binding Colors}" 
-                        SelectedItem="{Binding FontColor}" 
-                        TextColor="{Binding FontColor}">
+                        ItemsSource="{Binding NamedColors}" 
+                        SelectedItem="{Binding CurrentNamedFontColor}" 
+                        ItemDisplayBinding="{Binding Item2}"
+                        TextColor="{Binding CurrentFontColor}">
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="Language" TextColor="{Binding FontColor}"></Label>
+                <Label Text="Language" 
+                       TextColor="{Binding CurrentFontColor}"
+                       FontSize="{Binding CurrentFontSize}"></Label>
                 <Picker ItemsSource="{Binding Locales}" 
                         SelectedItem="{Binding CurrentLocale}" 
                         ItemDisplayBinding="{Binding Name}"
-                        TextColor="{Binding FontColor}">
+                        TextColor="{Binding CurrentFontColor}">
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="Font size" TextColor="{Binding FontColor}"></Label>
+                <Label Text="Font size" 
+                       TextColor="{Binding CurrentFontColor}"
+                       FontSize="{Binding CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontSize"
-                        ItemsSource="{Binding FontSizeNames}" 
-                        SelectedIndex="{Binding FontSize}" 
-                        TextColor="{Binding FontColor}">
+                        ItemsSource="{Binding FontSizes}" 
+                        SelectedItem="{Binding CurrentFontSize}" 
+                        TextColor="{Binding CurrentFontColor}">
                 </Picker>
             </StackLayout>
         </StackLayout>

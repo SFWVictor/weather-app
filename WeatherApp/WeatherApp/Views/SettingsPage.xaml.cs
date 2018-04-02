@@ -1,6 +1,5 @@
 ﻿namespace WeatherApp.Views
 {
-    using WeatherApp.Helpers.Converters;
     using WeatherApp.Helpers.AppSettings;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -13,7 +12,6 @@
             InitializeComponent();
 
             BindingContext = Settings.Instance;
-            PickerFontSize.SetBinding(Picker.SelectedIndexProperty, new Binding("SelectedFontSize", BindingMode.Default, new IntEnumConverter()));
         }
     }
 }

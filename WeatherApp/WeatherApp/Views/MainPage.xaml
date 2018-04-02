@@ -3,18 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherApp"
              x:Class="WeatherApp.MainPage">
-
-    <ListView HasUnevenRows="True"
+    <StackLayout>
+        <Button Text="Settings" Pressed="ButtonSettings_Tapped" HeightRequest="100"></Button>
+        <ListView x:Name="ListViewCities"
+              HasUnevenRows="True"
               VerticalOptions="FillAndExpand"
               IsPullToRefreshEnabled="True"
               ItemsSource="{Binding Cities}"
               RefreshCommand="{Binding LoadCitiesCommand}"
               IsRefreshing="{Binding IsBusy, Mode = OneWay}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <local:CityViewCell/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:CityViewCell/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 
 </ContentPage>

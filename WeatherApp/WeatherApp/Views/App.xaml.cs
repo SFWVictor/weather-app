@@ -9,10 +9,12 @@
         {
             InitializeComponent();
 
-            MainPage = new WeatherApp.MainPage()
+            NavigationPage navigationPage = new NavigationPage(new WeatherApp.MainPage())
             {
                 BindingContext = new MainPageViewModel()
             };
+
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()

@@ -2,7 +2,8 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.CityViewCell"
-             xmlns:controls="clr-namespace:WeatherApp.Controls">
+             xmlns:controls="clr-namespace:WeatherApp.Controls"
+             xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings">
     <ViewCell.View>
         <StackLayout BackgroundColor="White" Margin="10"
                      Orientation="Horizontal">
@@ -10,26 +11,34 @@
             <StackLayout Orientation="Vertical"
                          VerticalOptions="FillAndExpand">
                 <Label Text="{Binding Name}"
-                       TextColor="Black"
-                       LineBreakMode="TailTruncation"/>
+                       LineBreakMode="TailTruncation"
+                       TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                       FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                 <StackLayout Orientation="Horizontal">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Longitude: "
-                               TextColor="Black"/>
+                               TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                               FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                         <Label Text="{Binding Coordinates.Longitude, Mode = OneWay}"
-                               TextColor="Black"/>
+                               TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                               FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Latitude: "
-                               TextColor="Black"/>
+                               TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                               FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                         <Label Text="{Binding Coordinates.Latitude, Mode = OneWay}"
-                               TextColor="Black"/>
+                               TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                               FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                     </StackLayout>
                 </StackLayout>
                 <Label Text="{Binding WeatherMain, Mode=OneWay}"
-                       TextColor="Black"/>
+                       TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                       FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                 <controls:MultiLineLabel 
                         Text="{Binding Description}"
+                        TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
+                        FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"
 			            VerticalOptions="Center"
 			            LineBreakMode="TailTruncation"
 			            Lines="2"/>

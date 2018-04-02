@@ -3,30 +3,55 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
     using WeatherApp.Helper;
     using Xamarin.Forms;
 
-    public sealed class Settings : SingletonBase<Settings>
+    public sealed class Settings : INotifyPropertyChanged
     {
+        private static Settings _instance;
         private readonly string LocaleFileName = "Resources.locales.json";
-
-        private ObservableCollection<LocaleInfo> _locales;
-        private ObservableCollection<Color> _colors;
-        private Color _currentFontColor;
-        private NamedSize _currentFontSize;
+        private double _currentFontSize;
         private LocaleInfo _currentLocale;
+        private Tuple<Color, string> _currentNamedFontColor;
 
         private Settings()
         {
-            _currentFontSize = NamedSize.Medium;
-            _locales = new ObservableCollection<LocaleInfo>(JsonDeserializer.LoadFromJson<LocaleInfo>(LocaleFileName));
-            _colors = new ObservableCollection<Color>() { Color.Black, Color.Blue, Color.Brown, Color.Red, Color.Violet };
-            _currentLocale = _locales.First();
-            _currentFontColor = _colors.First();
+            Locales = new ObservableCollection<LocaleInfo>(JsonDeserializer.LoadFromJson<LocaleInfo>(LocaleFileName));
+            NamedColors = new ObservableCollection<Tuple<Color, string>>() { new Tuple<Color, string>(Color.Black, "Black"), new Tuple<Color, string>(Color.Blue, "Blue"), new Tuple<Color, string>(Color.Brown, "Brown"),
+                new Tuple<Color, string>( Color.Red, "Red"), new Tuple<Color, string>(Color.Violet, "Violet"), new Tuple<Color, string>(Color.DeepPink, "Pink") };
+            FontSizes = new ObservableCollection<double>() { 14, 15, 16, 17 };
+            CurrentLocale = Locales.First();
+            CurrentNamedFontColor = NamedColors.First();
+            CurrentFontSize = FontSizes.First();
         }
 
-        public ObservableCollection<Color> Colors { get => _colors; }
+        public static Settings Instance
+        {
+            get
+            {
+                return _instance ?? (_instance = new Settings());
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<LocaleInfo> Locales { get; private set; }
+
+        public ObservableCollection<double> FontSizes { get; private set; }
+
+        public ObservableCollection<Tuple<Color, string>> NamedColors { get; private set; }
+
+        public LocaleInfo CurrentLocale
+        {
+            get => _currentLocale;
+            set
+            {
+                _currentLocale = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocale)));
+            }
+        }
 
         public List<string> FontSizeNames
         {
@@ -36,12 +61,34 @@
             }
         }
 
-        public ObservableCollection<LocaleInfo> Locales { get => _locales; }
+        public double CurrentFontSize
+        {
+            get => _currentFontSize;
+            set
+            {
+                _currentFontSize = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentFontSize)));
+            }
+        }
 
-        public Color CurrentFontColor { get => _currentFontColor; set => _currentFontColor = value; }
+        public Tuple<Color, string> CurrentNamedFontColor
+        {
+            get => _currentNamedFontColor;
+            set
+            {
+                _currentNamedFontColor = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNamedFontColor)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentFontColor)));
+            }
+        }
 
-        public NamedSize CurrentFontSize { get => _currentFontSize; set => _currentFontSize = value; }
-
-        public LocaleInfo CurrentLocale { get => _currentLocale; set => _currentLocale = value; }
+        public Color CurrentFontColor
+        {
+            get => CurrentNamedFontColor.Item1;
+            set
+            {
+                CurrentNamedFontColor = NamedColors.First((t) => t.Item1 == value);
+            }
+        }
     }
 }
