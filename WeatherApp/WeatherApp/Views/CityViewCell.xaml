@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.CityViewCell"
              xmlns:controls="clr-namespace:WeatherApp.Controls"
-             xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings">
+             xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings"
+             xmlns:localization="clr-namespace:WeatherApp.Localization">
     <ViewCell.View>
         <StackLayout BackgroundColor="White" Margin="10"
                      Orientation="Horizontal">

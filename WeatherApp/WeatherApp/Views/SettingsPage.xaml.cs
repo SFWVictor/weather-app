@@ -1,6 +1,6 @@
 ﻿namespace WeatherApp.Views
 {
-    using WeatherApp.Helpers.AppSettings;
+    using WeatherApp.ViewModels;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -11,7 +11,7 @@
         {
             InitializeComponent();
 
-            BindingContext = Settings.Instance;
+            BindingContext = new SettingsViewModel();
         }
     }
 }

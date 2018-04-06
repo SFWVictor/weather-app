@@ -5,34 +5,34 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label Text="Font color" 
-                       TextColor="{Binding CurrentFontColor}"
-                       FontSize="{Binding CurrentFontSize}"></Label>
+                <Label Text="{Binding FontColorText, Mode=OneWay}" 
+                       TextColor="{Binding SettingsInstance.CurrentFontColor}"
+                       FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontColor"
-                        ItemsSource="{Binding NamedColors}" 
-                        SelectedItem="{Binding CurrentNamedFontColor}" 
+                        ItemsSource="{Binding SettingsInstance.NamedColors}" 
+                        SelectedItem="{Binding SettingsInstance.CurrentNamedFontColor}" 
                         ItemDisplayBinding="{Binding Item2}"
-                        TextColor="{Binding CurrentFontColor}">
+                        TextColor="{Binding SettingsInstance.CurrentFontColor}">
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="Language" 
-                       TextColor="{Binding CurrentFontColor}"
-                       FontSize="{Binding CurrentFontSize}"></Label>
-                <Picker ItemsSource="{Binding Locales}" 
-                        SelectedItem="{Binding CurrentLocale}" 
+                <Label Text="{Binding AppLanguageText, Mode=OneWay}" 
+                       TextColor="{Binding SettingsInstance.CurrentFontColor}"
+                       FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
+                <Picker ItemsSource="{Binding SettingsInstance.Locales}" 
+                        SelectedItem="{Binding SettingsInstance.CurrentLocale}" 
                         ItemDisplayBinding="{Binding Name}"
-                        TextColor="{Binding CurrentFontColor}">
+                        TextColor="{Binding SettingsInstance.CurrentFontColor}">
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="Font size" 
-                       TextColor="{Binding CurrentFontColor}"
-                       FontSize="{Binding CurrentFontSize}"></Label>
+                <Label Text="{Binding FontSizeText, Mode=OneWay}" 
+                       TextColor="{Binding SettingsInstance.CurrentFontColor}"
+                       FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontSize"
-                        ItemsSource="{Binding FontSizes}" 
-                        SelectedItem="{Binding CurrentFontSize}" 
-                        TextColor="{Binding CurrentFontColor}">
+                        ItemsSource="{Binding SettingsInstance.FontSizes}" 
+                        SelectedItem="{Binding SettingsInstance.CurrentFontSize}" 
+                        TextColor="{Binding SettingsInstance.CurrentFontColor}">
                 </Picker>
             </StackLayout>
         </StackLayout>

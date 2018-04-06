@@ -6,7 +6,9 @@
     using System.ComponentModel;
     using System.Globalization;
     using System.Linq;
+    using System.Threading;
     using WeatherApp.Helper;
+    using WeatherApp.Localization;
     using Xamarin.Forms;
 
     public sealed class Settings : INotifyPropertyChanged
@@ -22,9 +24,9 @@
             Locales = new ObservableCollection<LocaleInfo>(JsonDeserializer.LoadFromJson<LocaleInfo>(LocaleFileName));
             NamedColors = new ObservableCollection<Tuple<Color, string>>() { new Tuple<Color, string>(Color.Black, "Black"), new Tuple<Color, string>(Color.Blue, "Blue"), new Tuple<Color, string>(Color.Brown, "Brown"),
                 new Tuple<Color, string>( Color.Red, "Red"), new Tuple<Color, string>(Color.Violet, "Violet"), new Tuple<Color, string>(Color.DeepPink, "Pink") };
-            FontSizes = new ObservableCollection<double>() { 14, 15, 16, 17 };
+            FontSizes = new ObservableCollection<double>() { 13, 14, 15, 16 };
             CurrentLocale = Locales.First();
-            CurrentNamedFontColor = NamedColors.First();
+            CurrentNamedFontColor = NamedColors.Skip(1).First();
             CurrentFontSize = FontSizes.First();
         }
 
@@ -50,9 +52,10 @@
             set
             {
                 _currentLocale = value;
+                CultureInfo newCi = new CultureInfo(value.Locale);
+                Resx.AppResources.Culture = newCi;
+                DependencyService.Get<ILocalize>().SetLocale(newCi);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocale)));
-                //TODO uncomment
-                //Resx.AppResources.Culture = new CultureInfo(value.Locale);
             }
         }
 
