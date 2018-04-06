@@ -5,7 +5,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using WeatherApp.Helper;
+    using WeatherApp.Helpers;
     using WeatherApp.Models;
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;

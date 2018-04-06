@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Globalization;
     using System.Linq;
     using WeatherApp.Helper;
     using Xamarin.Forms;
@@ -50,6 +51,8 @@
             {
                 _currentLocale = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocale)));
+                //TODO uncomment
+                //Resx.AppResources.Culture = new CultureInfo(value.Locale);
             }
         }
 

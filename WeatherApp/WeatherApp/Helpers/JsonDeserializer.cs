@@ -1,4 +1,4 @@
-﻿namespace WeatherApp.Helper
+﻿namespace WeatherApp.Helpers
 {
     using System.Collections.Generic;
     using System.IO;

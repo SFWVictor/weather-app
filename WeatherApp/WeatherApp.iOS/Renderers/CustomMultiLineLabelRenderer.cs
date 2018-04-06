@@ -1,9 +1,8 @@
 ﻿using WeatherApp.Controls;
-using WeatherApp.iOS;
 using Xamarin.Forms;
 
-[assembly: ExportRenderer(typeof(MultiLineLabel), typeof(CustomMultiLineLabelRenderer))]
-namespace WeatherApp.iOS
+[assembly: ExportRenderer(typeof(MultiLineLabel), typeof(WeatherApp.iOS.Renderers.CustomMultiLineLabelRenderer))]
+namespace WeatherApp.iOS.Renderers
 {
     using Xamarin.Forms.Platform.iOS;
 

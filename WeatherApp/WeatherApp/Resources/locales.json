@@ -1,10 +1,10 @@
 ﻿[
   {
     "name": "Русский",
-    "locale": "ru"
+    "locale": "ru-RU"
   },
   {
     "name": "English",
-    "locale": "en"
+    "locale": "en-GB"
   }
 ]

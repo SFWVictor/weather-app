@@ -4,15 +4,11 @@
 
     public class WeatherSubDetails
     {
-        private string _main;
-        private string _description;
-        private string _icon;
-
         [JsonProperty("main")]
-        public string Main { get => _main; set => _main = value; }
+        public string Main { get; set; }
         [JsonProperty("description")]
-        public string Description { get => _description; set => _description = value; }
+        public string Description { get; set; }
         [JsonProperty("icon")]
-        public string Icon { get => _icon; set => _icon = value; }
+        public string Icon { get; set; }
     }
 }

@@ -9,6 +9,10 @@
         {
             InitializeComponent();
 
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+            }
+
             NavigationPage navigationPage = new NavigationPage(new WeatherApp.MainPage())
             {
                 BindingContext = new MainPageViewModel()
