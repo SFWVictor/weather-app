@@ -70,6 +70,60 @@ namespace WeatherApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Чёрный.
+        /// </summary>
+        public static string ColorBlack {
+            get {
+                return ResourceManager.GetString("ColorBlack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Синий.
+        /// </summary>
+        public static string ColorBlue {
+            get {
+                return ResourceManager.GetString("ColorBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Коричневый.
+        /// </summary>
+        public static string ColorBrown {
+            get {
+                return ResourceManager.GetString("ColorBrown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Розовый.
+        /// </summary>
+        public static string ColorPink {
+            get {
+                return ResourceManager.GetString("ColorPink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Красный.
+        /// </summary>
+        public static string ColorRed {
+            get {
+                return ResourceManager.GetString("ColorRed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фиолетовый.
+        /// </summary>
+        public static string ColorViolet {
+            get {
+                return ResourceManager.GetString("ColorViolet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цвет текста.
         /// </summary>
         public static string FontColorText {

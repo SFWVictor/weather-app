@@ -120,6 +120,24 @@
   <data name="AppLanguageText" xml:space="preserve">
     <value>Язык приложения</value>
   </data>
+  <data name="ColorBlack" xml:space="preserve">
+    <value>Чёрный</value>
+  </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>Синий</value>
+  </data>
+  <data name="ColorBrown" xml:space="preserve">
+    <value>Коричневый</value>
+  </data>
+  <data name="ColorPink" xml:space="preserve">
+    <value>Розовый</value>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>Красный</value>
+  </data>
+  <data name="ColorViolet" xml:space="preserve">
+    <value>Фиолетовый</value>
+  </data>
   <data name="FontColorText" xml:space="preserve">
     <value>Цвет текста</value>
   </data>

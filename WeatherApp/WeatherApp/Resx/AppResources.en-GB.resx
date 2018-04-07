@@ -120,6 +120,24 @@
   <data name="AppLanguageText" xml:space="preserve">
     <value>App language</value>
   </data>
+  <data name="ColorBlack" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="ColorBlue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="ColorBrown" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="ColorPink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="ColorRed" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="ColorViolet" xml:space="preserve">
+    <value>Violet</value>
+  </data>
   <data name="FontColorText" xml:space="preserve">
     <value>Font color</value>
   </data>

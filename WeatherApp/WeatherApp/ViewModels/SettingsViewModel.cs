@@ -10,6 +10,11 @@
             SettingsInstance.PropertyChanged += SettingsInstance_PropertyChanged;
         }
 
+        ~SettingsViewModel()
+        {
+            SettingsInstance.PropertyChanged -= SettingsInstance_PropertyChanged;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public Settings SettingsInstance => Settings.Instance;
 
@@ -44,6 +49,7 @@
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontColorText)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontSizeText)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AppLanguageText)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Settings.CurrentNamedFontColor)));
             }
         }
     }

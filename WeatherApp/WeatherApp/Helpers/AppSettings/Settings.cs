@@ -22,12 +22,13 @@
         private Settings()
         {
             Locales = new ObservableCollection<LocaleInfo>(JsonDeserializer.LoadFromJson<LocaleInfo>(LocaleFileName));
-            NamedColors = new ObservableCollection<Tuple<Color, string>>() { new Tuple<Color, string>(Color.Black, "Black"), new Tuple<Color, string>(Color.Blue, "Blue"), new Tuple<Color, string>(Color.Brown, "Brown"),
-                new Tuple<Color, string>( Color.Red, "Red"), new Tuple<Color, string>(Color.Violet, "Violet"), new Tuple<Color, string>(Color.DeepPink, "Pink") };
+            LoadColors();
             FontSizes = new ObservableCollection<double>() { 13, 14, 15, 16 };
             CurrentLocale = Locales.First();
             CurrentNamedFontColor = NamedColors.Skip(1).First();
             CurrentFontSize = FontSizes.First();
+
+            PropertyChanged += Settings_PropertyChanged;
         }
 
         public static Settings Instance
@@ -94,6 +95,36 @@
             set
             {
                 CurrentNamedFontColor = NamedColors.First((t) => t.Item1 == value);
+            }
+        }
+
+        private void LoadColors()
+        {
+            var prevCurrentNamedColor = CurrentNamedFontColor;
+            CurrentNamedFontColor = null;
+            if (NamedColors is null)
+            {
+                NamedColors = new ObservableCollection<Tuple<Color, string>>();
+            }
+            NamedColors.Clear();
+            var newNamedColors = new List<Tuple<Color, string>>() { new Tuple<Color, string>(Color.Black, Resx.AppResources.ColorBlack), new Tuple<Color, string>(Color.Blue, Resx.AppResources.ColorBlue), new Tuple<Color, string>(Color.Brown, Resx.AppResources.ColorBrown),
+                new Tuple<Color, string>( Color.Red, Resx.AppResources.ColorRed), new Tuple<Color, string>(Color.Violet, Resx.AppResources.ColorViolet), new Tuple<Color, string>(Color.DeepPink, Resx.AppResources.ColorPink) };
+            foreach (var color in newNamedColors)
+            {
+                NamedColors.Add(color);
+            }
+
+            if (prevCurrentNamedColor != null)
+            {
+                CurrentNamedFontColor = NamedColors.First(c => c.Item1 == prevCurrentNamedColor.Item1);
+            }
+        }
+
+        private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CurrentLocale))
+            {
+                LoadColors();
             }
         }
     }
