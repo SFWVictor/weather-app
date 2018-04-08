@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:WeatherApp"
              x:Class="WeatherApp.MainPage"             
              xmlns:localization="clr-namespace:WeatherApp.Localization"
-             Title="{localization:Translate CitiesText}">
+             Title="{Binding CitiesText, Source={x:Static localization:LocalizedStringProvider.Instance}}">
     <StackLayout>
         <ListView x:Name="ListViewCities"
               HasUnevenRows="True"

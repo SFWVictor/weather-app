@@ -41,6 +41,8 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler LocaleChanged;
+
         public ObservableCollection<LocaleInfo> Locales { get; private set; }
 
         public ObservableCollection<double> FontSizes { get; private set; }
@@ -57,6 +59,7 @@
                 Resx.AppResources.Culture = newCi;
                 DependencyService.Get<ILocalize>().SetLocale(newCi);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLocale)));
+                LocaleChanged?.Invoke(this, new EventArgs());
             }
         }
 

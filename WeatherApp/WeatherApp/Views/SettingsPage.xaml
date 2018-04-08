@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.SettingsPage"
              xmlns:localization="clr-namespace:WeatherApp.Localization"
-             Title="{localization:Translate SettingsText}">
+             Title="{Binding SettingsText, Source={x:Static localization:LocalizedStringProvider.Instance}}">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label Text="{Binding FontColorText}" 
+                <Label Text="{Binding FontColorText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
                        TextColor="{Binding SettingsInstance.CurrentFontColor}"
                        FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontColor"
@@ -18,7 +18,7 @@
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="{Binding AppLanguageText}" 
+                <Label Text="{Binding AppLanguageText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
                        TextColor="{Binding SettingsInstance.CurrentFontColor}"
                        FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
                 <Picker ItemsSource="{Binding SettingsInstance.Locales}" 
@@ -28,7 +28,7 @@
                 </Picker>
             </StackLayout>
             <StackLayout>
-                <Label Text="{Binding FontSizeText}" 
+                <Label Text="{Binding FontSizeText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
                        TextColor="{Binding SettingsInstance.CurrentFontColor}"
                        FontSize="{Binding SettingsInstance.CurrentFontSize}"></Label>
                 <Picker x:Name="PickerFontSize"

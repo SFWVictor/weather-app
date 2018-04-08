@@ -17,7 +17,7 @@
                        FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                 <StackLayout Orientation="Horizontal">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{localization:Translate LongitudeText}"
+                        <Label Text="{Binding LongitudeText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
                                TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
                                FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                         <Label Text="{Binding Coordinates.Longitude, Mode = OneWay}"
@@ -25,7 +25,7 @@
                                FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{localization:Translate LatitudeText}"
+                        <Label Text="{Binding LatitudeText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
                                TextColor="{Binding CurrentFontColor, Source={x:Static settings:Settings.Instance}}"
                                FontSize="{Binding CurrentFontSize, Source={x:Static settings:Settings.Instance}}"/>
                         <Label Text="{Binding Coordinates.Latitude, Mode = OneWay}"
