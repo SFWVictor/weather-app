@@ -70,6 +70,15 @@ namespace WeatherApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Города.
+        /// </summary>
+        public static string CitiesText {
+            get {
+                return ResourceManager.GetString("CitiesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Чёрный.
         /// </summary>
         public static string ColorBlack {
@@ -156,6 +165,15 @@ namespace WeatherApp.Resx {
         public static string LongitudeText {
             get {
                 return ResourceManager.GetString("LongitudeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройки.
+        /// </summary>
+        public static string SettingsText {
+            get {
+                return ResourceManager.GetString("SettingsText", resourceCulture);
             }
         }
     }

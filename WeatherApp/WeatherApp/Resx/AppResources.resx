@@ -120,6 +120,9 @@
   <data name="AppLanguageText" xml:space="preserve">
     <value>Язык приложения</value>
   </data>
+  <data name="CitiesText" xml:space="preserve">
+    <value>Города</value>
+  </data>
   <data name="ColorBlack" xml:space="preserve">
     <value>Чёрный</value>
   </data>
@@ -149,5 +152,8 @@
   </data>
   <data name="LongitudeText" xml:space="preserve">
     <value>Долгота</value>
+  </data>
+  <data name="SettingsText" xml:space="preserve">
+    <value>Настройки</value>
   </data>
 </root>

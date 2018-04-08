@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherApp"
-             x:Class="WeatherApp.MainPage">
+             x:Class="WeatherApp.MainPage"             
+             xmlns:localization="clr-namespace:WeatherApp.Localization"
+             Title="{localization:Translate CitiesText}">
     <StackLayout>
-        <Button Text="Settings" Pressed="ButtonSettings_Tapped" HeightRequest="100"></Button>
         <ListView x:Name="ListViewCities"
               HasUnevenRows="True"
               VerticalOptions="FillAndExpand"
@@ -19,5 +20,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
-
 </ContentPage>

@@ -120,6 +120,9 @@
   <data name="AppLanguageText" xml:space="preserve">
     <value>App language</value>
   </data>
+  <data name="CitiesText" xml:space="preserve">
+    <value>Cities</value>
+  </data>
   <data name="ColorBlack" xml:space="preserve">
     <value>Black</value>
   </data>
@@ -149,5 +152,8 @@
   </data>
   <data name="LongitudeText" xml:space="preserve">
     <value>Longitude</value>
+  </data>
+  <data name="SettingsText" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

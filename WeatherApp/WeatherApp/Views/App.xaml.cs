@@ -2,6 +2,7 @@
 {
     using WeatherApp.Localization;
     using WeatherApp.ViewModels;
+    using WeatherApp.Views;
     using Xamarin.Forms;
 
     public partial class App : Application
@@ -18,12 +19,14 @@
                 DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
             }
 
-            NavigationPage navigationPage = new NavigationPage(new WeatherApp.MainPage())
+            var page = new TabbedPage();
+            page.Children.Add(new MainPage()
             {
                 BindingContext = new MainPageViewModel()
-            };
+            });
+            page.Children.Add(new SettingsPage());
 
-            MainPage = navigationPage;
+            MainPage = page;
         }
 
         protected override void OnStart()

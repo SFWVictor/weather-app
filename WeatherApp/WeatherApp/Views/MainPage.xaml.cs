@@ -1,8 +1,5 @@
 ﻿namespace WeatherApp
 {
-    using System;
-    using WeatherApp.ViewModels;
-    using WeatherApp.Views;
     using Xamarin.Forms;
 
     public partial class MainPage : ContentPage
@@ -24,13 +21,6 @@
                 _height = height;
                 //TODO reconfigure layout
             }
-        }
-
-        private async void ButtonSettings_Tapped(object sender, EventArgs e)
-        {
-            var settingsPage = new SettingsPage();
-
-            await Navigation.PushAsync(settingsPage);
         }
     }
 }

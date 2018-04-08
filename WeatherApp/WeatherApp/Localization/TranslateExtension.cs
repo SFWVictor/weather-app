@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.Linq.Expressions;
     using System.Reflection;
     using System.Resources;
     using Xamarin.Forms;
@@ -30,7 +31,9 @@
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (Text == null)
+            {
                 return string.Empty;
+            }
 
             var translation = ResMgr.Value.GetString(Text, ci);
             if (translation == null)
@@ -39,6 +42,7 @@
                     string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", Text, ResourceId, ci.Name),
                     "Text");
             }
+
             return translation;
         }
     }
