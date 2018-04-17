@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:WeatherApp.Controls"
              xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings"
              xmlns:localization="clr-namespace:WeatherApp.Localization"
-             x:Class="WeatherApp.CityViewCell">
+             x:Class="WeatherApp.Views.CityViewCell">
     <ViewCell.View>
         <StackLayout BackgroundColor="White" Margin="10"
                      Orientation="Horizontal">

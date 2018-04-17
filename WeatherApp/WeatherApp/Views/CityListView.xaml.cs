@@ -4,9 +4,9 @@
     using Xamarin.Forms.Xaml;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CityViewCell : ViewCell
+    public partial class CityListView : ContentView
     {
-        public CityViewCell()
+        public CityListView()
         {
             InitializeComponent();
         }

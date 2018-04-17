@@ -1,13 +1,13 @@
-﻿namespace WeatherApp
+﻿namespace WeatherApp.Views
 {
     using Xamarin.Forms;
 
-    public partial class MainPage : ContentPage
+    public partial class CityListPage : ContentPage
     {
         private double _width = 0;
         private double _height = 0;
 
-        public MainPage()
+        public CityListPage()
         {
             InitializeComponent();
         }

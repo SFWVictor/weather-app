@@ -1,9 +1,8 @@
-﻿namespace WeatherApp
+﻿namespace WeatherApp.Views
 {
     using System.Collections.ObjectModel;
     using WeatherApp.Localization;
     using WeatherApp.ViewModels;
-    using WeatherApp.Views;
     using Xamarin.Forms;
 
     public partial class App : Application
@@ -22,9 +21,9 @@
 
             var page = new TabbedPage();
             var cities = new ObservableCollection<CityViewModel>();
-            page.Children.Add(new MainPage()
+            page.Children.Add(new CityListPage()
             {
-                BindingContext = new MainPageViewModel(cities)
+                BindingContext = new CityListViewModel(cities)
             });
 
             page.Children.Add(new MapPage()

@@ -10,7 +10,7 @@
     using Xamarin.Forms;
     using Xamarin.Forms.Internals;
 
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class CityListViewModel : INotifyPropertyChanged
     {
         private const string FileName = "Resources.cities_{0}.json";
 
@@ -18,7 +18,7 @@
         private Command _loadCitiesCommand;
         private bool _isBusy;
 
-        public MainPageViewModel(ObservableCollection<CityViewModel> cities)
+        public CityListViewModel(ObservableCollection<CityViewModel> cities)
         {
             _cities = cities;
             LoadCities();

@@ -1,12 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:WeatherApp"
              xmlns:views="clr-namespace:WeatherApp.Views"
-             xmlns:localization="clr-namespace:WeatherApp.Localization"
-             Title="{Binding CitiesText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
-             x:Class="WeatherApp.MainPage">
-    <StackLayout>
+             x:Class="WeatherApp.Views.CityListView">
+    <ContentView.Content>
         <ListView x:Name="ListViewCities"
               HasUnevenRows="True"
               VerticalOptions="FillAndExpand"
@@ -16,9 +13,9 @@
               IsRefreshing="{Binding IsBusy, Mode = OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:CityViewCell/>
+                    <views:CityViewCell/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

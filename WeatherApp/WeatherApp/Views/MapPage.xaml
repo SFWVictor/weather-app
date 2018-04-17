@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:local="clr-namespace:WeatherApp.Views"
              xmlns:localization="clr-namespace:WeatherApp.Localization"
-             xmlns:controls="clr-namespace:WeatherApp.Controls"
              Title="{Binding MapText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
              x:Class="WeatherApp.Views.MapPage">
     <ContentPage.Content>
         <StackLayout>
-            <controls:ExtMap x:Name="CitiesMap"
-                      IsShowingUser="False"
-                      MapType="Street"/>
+            <local:CitiesMapView VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
