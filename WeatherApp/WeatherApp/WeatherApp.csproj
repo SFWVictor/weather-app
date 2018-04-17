@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\cities.json" />
+    <None Remove="Resources\cities_en-GB.json" />
+    <None Remove="Resources\cities_ru-RU.json" />
     <None Remove="Resources\locales.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\cities.json" />
+    <EmbeddedResource Include="Resources\cities_en-GB.json" />
+    <EmbeddedResource Include="Resources\cities_ru-RU.json" />
     <EmbeddedResource Include="Resources\locales.json" />
   </ItemGroup>
 

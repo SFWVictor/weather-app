@@ -12,7 +12,7 @@
 
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        private const string FileName = "Resources.cities.json";
+        private const string FileName = "Resources.cities_{0}.json";
 
         private ObservableCollection<CityViewModel> _cities;
         private Command _loadCitiesCommand;
@@ -22,6 +22,7 @@
         {
             _cities = cities;
             LoadCities();
+            Helpers.AppSettings.Settings.Instance.LocaleChanged += (s, e) => { LoadCities(); };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -43,9 +44,9 @@
             get
             {
                 return _loadCitiesCommand ??
-                  (_loadCitiesCommand = new Command(async () =>
+                  (_loadCitiesCommand = new Command(() =>
                   {
-                      await ExecuteLoadCitiesCommand();
+                      ExecuteLoadCitiesCommand();
                   }, () =>
                   {
                       return !IsBusy;
@@ -65,7 +66,7 @@
             }
         }
 
-        private async Task ExecuteLoadCitiesCommand()
+        private void ExecuteLoadCitiesCommand()
         {
             if (IsBusy)
                 return;
@@ -88,7 +89,7 @@
 
         private IEnumerable<CityViewModel> GetCities()
         {
-            var readObjects = JsonDeserializer.LoadFromJson<City>(FileName);
+            var readObjects = JsonDeserializer.LoadFromJson<City>(string.Format(FileName,  Resx.AppResources.FileNamePostfix));
             return readObjects.Select((city) => { return new CityViewModel(city); });
         }
     }

@@ -141,6 +141,9 @@
   <data name="ColorViolet" xml:space="preserve">
     <value>Violet</value>
   </data>
+  <data name="FileNamePostfix" xml:space="preserve">
+    <value>en-GB</value>
+  </data>
   <data name="FontColorText" xml:space="preserve">
     <value>Font color</value>
   </data>

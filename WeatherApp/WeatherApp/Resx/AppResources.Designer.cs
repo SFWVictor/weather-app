@@ -133,6 +133,15 @@ namespace WeatherApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ru-RU.
+        /// </summary>
+        public static string FileNamePostfix {
+            get {
+                return ResourceManager.GetString("FileNamePostfix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цвет текста.
         /// </summary>
         public static string FontColorText {

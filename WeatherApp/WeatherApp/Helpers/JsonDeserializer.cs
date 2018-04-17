@@ -1,20 +1,13 @@
 ﻿namespace WeatherApp.Helpers
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Reflection;
     using Newtonsoft.Json;
 
     public static class JsonDeserializer
     {
-        public static List<T> DeserializeObjects<T>(StreamReader reader)
-            where T : class
-        {
-            var json = reader.ReadToEnd();
-            var objects = JsonConvert.DeserializeObject<List<T>>(json);
-            return objects;
-        }
-
         public static List<T> LoadFromJson<T>(string jsonFileName)
             where T : class
         {
@@ -27,6 +20,14 @@
                 objects = DeserializeObjects<T>(reader);
             }
 
+            return objects;
+        }
+
+        public static List<T> DeserializeObjects<T>(StreamReader reader)
+            where T : class
+        {
+            var json = (reader.ReadToEnd());
+            var objects = JsonConvert.DeserializeObject<List<T>>(json);
             return objects;
         }
     }
