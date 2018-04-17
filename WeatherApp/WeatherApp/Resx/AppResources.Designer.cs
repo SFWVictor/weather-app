@@ -169,11 +169,29 @@ namespace WeatherApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Карта.
+        /// </summary>
+        public static string MapText {
+            get {
+                return ResourceManager.GetString("MapText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         public static string SettingsText {
             get {
                 return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Направление ветра.
+        /// </summary>
+        public static string WindDirection {
+            get {
+                return ResourceManager.GetString("WindDirection", resourceCulture);
             }
         }
     }

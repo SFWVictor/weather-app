@@ -153,7 +153,13 @@
   <data name="LongitudeText" xml:space="preserve">
     <value>Longitude</value>
   </data>
+  <data name="MapText" xml:space="preserve">
+    <value>Map</value>
+  </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="WindDirection" xml:space="preserve">
+    <value>Wind direction</value>
   </data>
 </root>

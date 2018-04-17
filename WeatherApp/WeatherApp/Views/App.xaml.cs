@@ -1,5 +1,6 @@
 ﻿namespace WeatherApp
 {
+    using System.Collections.ObjectModel;
     using WeatherApp.Localization;
     using WeatherApp.ViewModels;
     using WeatherApp.Views;
@@ -20,11 +21,21 @@
             }
 
             var page = new TabbedPage();
+            var cities = new ObservableCollection<CityViewModel>();
             page.Children.Add(new MainPage()
             {
-                BindingContext = new MainPageViewModel()
+                BindingContext = new MainPageViewModel(cities)
             });
-            page.Children.Add(new SettingsPage());
+
+            page.Children.Add(new MapPage()
+            {
+                BindingContext = new MapViewModel(cities)
+            });
+
+            page.Children.Add(new SettingsPage()
+            {
+                BindingContext = new SettingsViewModel()
+            });
 
             MainPage = page;
         }

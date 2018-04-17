@@ -153,7 +153,13 @@
   <data name="LongitudeText" xml:space="preserve">
     <value>Долгота</value>
   </data>
+  <data name="MapText" xml:space="preserve">
+    <value>Карта</value>
+  </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="WindDirection" xml:space="preserve">
+    <value>Направление ветра</value>
   </data>
 </root>

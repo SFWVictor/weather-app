@@ -88,13 +88,17 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomMKAnnotationView.cs" />
     <Compile Include="Localization\Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\CustomMultiLineLabelRenderer.cs" />
+    <Compile Include="Renderers\ExtMapRenderer .cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\ru.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -122,13 +126,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>2.5.1.444934</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\WeatherApp\WeatherApp.csproj">
-      <Project>{7C77638C-34DA-4577-9E13-50E4196A9174}</Project>
+      <Project>{15b1a131-1f72-4c15-a223-07f913fa531b}</Project>
       <Name>WeatherApp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
 </Project>

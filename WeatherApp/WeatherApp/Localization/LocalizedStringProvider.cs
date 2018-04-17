@@ -78,6 +78,14 @@
             }
         }
 
+        public string MapText
+        {
+            get
+            {
+                return Resx.AppResources.MapText;
+            }
+        }
+
         private void SetHandlers()
         {
             Settings.Instance.LocaleChanged += (o, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CitiesText)));

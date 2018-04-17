@@ -10,8 +10,6 @@
         public SettingsPage()
         {
             InitializeComponent();
-
-            BindingContext = new SettingsViewModel();
         }
     }
 }

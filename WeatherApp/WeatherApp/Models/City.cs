@@ -2,16 +2,17 @@
 {
     using System;
     using Newtonsoft.Json;
+    using Xamarin.Forms.Maps;
 
     public class City
     {
         private int _id;
         private string _name;
-        private Coordinates _coordinates;
+        private Position _coordinates;
         private string _description;
         private string _smallImageUrl;
 
-        public City(int id, string name, Coordinates coordinates, string description, string smallImageUrl)
+        public City(int id, string name, Position coordinates, string description, string smallImageUrl)
         {
             _id = id;
             _name = name ?? throw new ArgumentNullException(nameof(name));
@@ -25,7 +26,7 @@
         [JsonProperty("name")]
         public string Name { get => _name; set => _name = value; }
         [JsonProperty("coordinates")]
-        public Coordinates Coordinates { get => _coordinates; set => _coordinates = value; }
+        public Position Coordinates { get => _coordinates; set => _coordinates = value; }
         [JsonProperty("description")]
         public string Description { get => _description; set => _description = value; }
         [JsonProperty("smallImageUrl")]

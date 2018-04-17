@@ -18,13 +18,14 @@
         private Command _loadCitiesCommand;
         private bool _isBusy;
 
-        public MainPageViewModel()
+        public MainPageViewModel(ObservableCollection<CityViewModel> cities)
         {
-            _cities = new ObservableCollection<CityViewModel>();
+            _cities = cities;
             LoadCities();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public ObservableCollection<CityViewModel> Cities
         {
             get => _cities;
