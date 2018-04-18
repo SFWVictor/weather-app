@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
-             xmlns:controls="clr-namespace:WeatherApp.Controls"
-             xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings"
-             xmlns:localization="clr-namespace:WeatherApp.Localization"
-             x:Class="WeatherApp.Views.CityViewCell">
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:controls="clr-namespace:WeatherApp.Controls"
+          xmlns:settings="clr-namespace:WeatherApp.Helpers.AppSettings"
+          xmlns:localization="clr-namespace:WeatherApp.Localization"
+          x:Class="WeatherApp.Views.CityViewCell">
     <ViewCell.View>
         <StackLayout BackgroundColor="White" Margin="10"
                      Orientation="Horizontal">

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:WeatherApp.Views"
              xmlns:localization="clr-namespace:WeatherApp.Localization"
-             Title="{Binding MapText, Source={x:Static localization:LocalizedStringProvider.Instance}}"
-             x:Class="WeatherApp.Views.MapPage">
+             xmlns:views="clr-namespace:WeatherApp.Views"
+             x:Class="WeatherApp.Views.MapPage"
+             Title="{Binding MapText, Source={x:Static localization:LocalizedStringProvider.Instance}}">
     <ContentPage.Content>
         <StackLayout>
-            <local:CitiesMapView VerticalOptions="FillAndExpand"/>
+            <views:CitiesMapView VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

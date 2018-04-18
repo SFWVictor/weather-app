@@ -26,6 +26,7 @@
 
         protected override void OnBindingContextChanged()
         {
+            base.OnBindingContextChanged();
             if (!(ViewModel is null))
             {
                 Load();

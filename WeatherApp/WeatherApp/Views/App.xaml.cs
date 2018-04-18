@@ -21,10 +21,13 @@
 
             var page = new TabbedPage();
             var cities = new ObservableCollection<CityViewModel>();
-            page.Children.Add(new CityListPage()
+            var cityListTab = new NavigationPage(new CityListPage()
             {
                 BindingContext = new CityListViewModel(cities)
             });
+            cityListTab.SetBinding(Page.TitleProperty, new Binding("CitiesText", source: LocalizedStringProvider.Instance));
+
+            page.Children.Add(cityListTab);
 
             page.Children.Add(new MapPage()
             {

@@ -95,6 +95,7 @@
             Settings.Instance.LocaleChanged += (o, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FontSizeText)));
             Settings.Instance.LocaleChanged += (o, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LatitudeText)));
             Settings.Instance.LocaleChanged += (o, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LongitudeText)));
+            Settings.Instance.LocaleChanged += (o, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MapText)));
         }
     }
 }
