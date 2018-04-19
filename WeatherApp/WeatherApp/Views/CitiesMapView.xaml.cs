@@ -24,6 +24,11 @@
 
         private MapViewModel ViewModel { get => BindingContext as MapViewModel; }
 
+        public void CenterOnPosition(Position pos)
+        {
+            CitiesMap.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(2)));
+        }
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -86,11 +91,6 @@
             }
 
             CenterOnPosition(resultPosition);
-        }
-
-        private void CenterOnPosition(Position pos)
-        {
-            CitiesMap.MoveToRegion(MapSpan.FromCenterAndRadius(pos, Distance.FromKilometers(2)));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace WeatherApp.Services
+﻿namespace WeatherApp.Helpers
 {
     using System.Net.Http;
     using Newtonsoft.Json;

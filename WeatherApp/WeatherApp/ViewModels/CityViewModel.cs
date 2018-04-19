@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using WeatherApp.Models;
-    using WeatherApp.Services;
+    using WeatherApp.Helpers;
     using Xamarin.Forms.Maps;
 
     public class CityViewModel : City
@@ -22,7 +22,16 @@
         {
             get
             {
-                return WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
+                string main = "Error loading weather";
+                try
+                {
+                    main = WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
+                }
+                catch
+                {
+                }
+
+                return main;
             }
         }
 
@@ -30,7 +39,15 @@
         {
             get
             {
-                int angle = WeatherService.GetWeather(Id).Wind.Angle;
+                int angle = 0;
+                try
+                {
+                    angle = WeatherService.GetWeather(Id).Wind.Angle;
+                }
+                catch
+                {
+                }
+
                 return GetArrow(angle);
             }
         }
