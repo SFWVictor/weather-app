@@ -16,6 +16,8 @@
         private CitiesMapView _citiesMapView = null;
         private StackOrientation _orientation;
         private bool _initialized = false;
+        private bool _subscribedLocaleChangeVertical = false;
+        private bool _subscribedLocaleChangeHorizontal = false;
 
         public CityListPage()
         {
@@ -139,7 +141,11 @@
 
             await Navigation.PushAsync(cityDetailsPage);
 
-            Settings.Instance.LocaleChanged += Settings_LocaleChanged_Vertical;
+            if (!_subscribedLocaleChangeVertical)
+            {
+                Settings.Instance.LocaleChanged += Settings_LocaleChanged_Vertical;
+                _subscribedLocaleChangeVertical = true;
+            }
         }
 
         private void CityList_ItemTappedHorizontal(object sender, ItemTappedEventArgs e)
@@ -148,7 +154,11 @@
             ShowCityDetails(selectedCity);
             _citiesMapView.CenterOnPosition(selectedCity.Coordinates);
 
-            Settings.Instance.LocaleChanged += Settings_LocaleChanged_Horizontal;
+            if (!_subscribedLocaleChangeHorizontal)
+            {
+                Settings.Instance.LocaleChanged += Settings_LocaleChanged_Horizontal;
+                _subscribedLocaleChangeHorizontal = true;
+            }
         }
 
         private void ShowCityDetails(CityViewModel selectedCity)
@@ -159,17 +169,27 @@
             MainGridLayout.Children.Add(_currentCityDetails, 1, 0);
         }
 
-        private async void Settings_LocaleChanged_Vertical(object sender, System.EventArgs e)
+        private async void Settings_LocaleChanged_Vertical(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-            Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Vertical;
+            if (_subscribedLocaleChangeVertical)
+            {
+                Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Vertical;
+                _subscribedLocaleChangeVertical = false;
+            }
         }
 
         private void Settings_LocaleChanged_Horizontal(object sender, EventArgs e)
         {
+            MainGridLayout.Children.Remove(_currentCityDetails);
+            _currentCityDetails = _emptyStackLayout;
+            MainGridLayout.Children.Add(_currentCityDetails, 1, 0);
 
-            ///TODO fix orientation change on different tab
-            Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Horizontal;
+            if (_subscribedLocaleChangeHorizontal)
+            {
+                Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Horizontal;
+                _subscribedLocaleChangeHorizontal = false;
+            }
         }
 
         private StackOrientation DetermineOrientation(double width, double height)

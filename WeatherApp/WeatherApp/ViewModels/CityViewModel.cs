@@ -8,6 +8,11 @@
 
     public class CityViewModel : City
     {
+        private const string WeatherLoadErrorMessage = "Error loading weather";
+        private const char WindAngleDefault = 'X';
+        private string _weatherMain = null;
+        private char _windAngle = WindAngleDefault;
+
         public CityViewModel(City city) :
             base(city.Id, city.Name, city.Coordinates, city.Description, city.SmallImageUrl)
         {
@@ -22,16 +27,19 @@
         {
             get
             {
-                string main = "Error loading weather";
-                try
+                if (_weatherMain is null || _weatherMain == WeatherLoadErrorMessage)
                 {
-                    main = WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
-                }
-                catch
-                {
+                    _weatherMain = WeatherLoadErrorMessage;
+                    try
+                    {
+                        _weatherMain = WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
+                    }
+                    catch
+                    {
+                    }
                 }
 
-                return main;
+                return _weatherMain;
             }
         }
 
@@ -39,16 +47,21 @@
         {
             get
             {
-                int angle = 0;
-                try
+                if (_windAngle == WindAngleDefault)
                 {
-                    angle = WeatherService.GetWeather(Id).Wind.Angle;
-                }
-                catch
-                {
+                    int angle = 0;
+                    try
+                    {
+                        angle = WeatherService.GetWeather(Id).Wind.Angle;
+                    }
+                    catch
+                    {
+                    }
+
+                    _windAngle = GetArrow(angle);
                 }
 
-                return GetArrow(angle);
+                return _windAngle;
             }
         }
 
