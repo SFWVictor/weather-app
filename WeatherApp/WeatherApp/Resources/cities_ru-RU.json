@@ -1,7 +1,7 @@
 [
   {
     "id": 10722858,
-    "name": "Svetlogorsk",
+    "name": "Светлогорск",
     "coordinates": {
       "Longitude": 29.733333,
       "Latitude": 52.633333
@@ -11,7 +11,7 @@
   },
   {
     "id": 624784,
-    "name": "Navapolatsk",
+    "name": "Новополоцк",
     "coordinates": {
       "Longitude": 28.642441,
       "Latitude": 55.536282
@@ -21,7 +21,7 @@
   },
   {
     "id": 624079,
-    "name": "Orsha",
+    "name": "Орша",
     "coordinates": {
       "Longitude": 30.405277,
       "Latitude": 54.515278
@@ -31,7 +31,7 @@
   },
   {
     "id": 625144,
-    "name": "Minsk",
+    "name": "Минск",
     "coordinates": {
       "Longitude": 27.566668,
       "Latitude": 53.900002
@@ -41,7 +41,7 @@
   },
   {
     "id": 624034,
-    "name": "Asipovichy",
+    "name": "Осиповичи",
     "coordinates": {
       "Longitude": 28.642221,
       "Latitude": 53.293331
@@ -51,7 +51,7 @@
   },
   {
     "id": 621754,
-    "name": "Slonim",
+    "name": "Слоним",
     "coordinates": {
       "Longitude": 25.321943,
       "Latitude": 53.086666
@@ -61,7 +61,7 @@
   },
   {
     "id": 629634,
-    "name": "Brest",
+    "name": "Брест",
     "coordinates": {
       "Longitude": 23.700001,
       "Latitude": 52.099998
@@ -71,7 +71,7 @@
   },
   {
     "id": 620127,
-    "name": "Vitsyebsk",
+    "name": "Витебск",
     "coordinates": {
       "Longitude": 30.2033,
       "Latitude": 55.190479
@@ -81,7 +81,7 @@
   },
   {
     "id": 627907,
-    "name": "Homyel",
+    "name": "Гомель",
     "coordinates": {
       "Longitude": 30.975401,
       "Latitude": 52.434502
@@ -91,7 +91,7 @@
   },
   {
     "id": 626081,
-    "name": "Lida",
+    "name": "Лида",
     "coordinates": {
       "Longitude": 25.299721,
       "Latitude": 53.883331

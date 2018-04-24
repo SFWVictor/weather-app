@@ -1,5 +1,6 @@
 ﻿namespace WeatherApp.Views
 {
+    using System;
     using WeatherApp.Helpers.AppSettings;
     using WeatherApp.ViewModels;
     using Xamarin.Forms;
@@ -8,8 +9,11 @@
     {
         private double _width = 0;
         private double _height = 0;
-        private CitiesMapView _citiesMapView = null;
         private CityListView _citiesListView = null;
+        private ColumnDefinition _cityDetailsColumn = null;
+        private View _currentCityDetails = null;
+        private StackLayout _emptyStackLayout = null;
+        private CitiesMapView _citiesMapView = null;
         private StackOrientation _orientation;
         private bool _initialized = false;
 
@@ -39,6 +43,7 @@
 
         protected override void OnBindingContextChanged()
         {
+            //Вызываем здесь потому что для создания формы необходим контекст
             if (!_initialized)
             {
                 InitialSetup();
@@ -52,15 +57,25 @@
             _citiesListView = new CityListView()
             {
                 BindingContext = ViewModel,
-                HorizontalOptions = LayoutOptions.Start
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
+
+            _emptyStackLayout = new StackLayout();
+            _currentCityDetails = _emptyStackLayout;
             _citiesMapView = new CitiesMapView()
             {
                 BindingContext = new MapViewModel(ViewModel.Cities),
-                HorizontalOptions = LayoutOptions.EndAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
-            MainStackLayout.Children.Add(_citiesListView);
+            _cityDetailsColumn = new ColumnDefinition()
+            {
+                Width = new GridLength(1, GridUnitType.Star)
+            };
+
+            MainGridLayout.Children.Add(_citiesListView, 0, 0);
+            Grid.SetRowSpan(_citiesListView, 2);
+
             SetupLayout(_orientation, false);
         }
 
@@ -87,10 +102,9 @@
 
         private void SetupVerticalLayout(bool subsequentCall)
         {
-            if (MainStackLayout.Children.Contains(_citiesMapView))
-            {
-                MainStackLayout.Children.Remove(_citiesMapView);
-            }
+            MainGridLayout.Children.Remove(_currentCityDetails);
+            MainGridLayout.Children.Remove(_citiesMapView);
+            MainGridLayout.ColumnDefinitions.Remove(_cityDetailsColumn);
 
             _citiesListView.ItemTapped += CityList_ItemTappedVertical;
             if (subsequentCall)
@@ -101,7 +115,10 @@
 
         private void SetupHorizontalLayout(bool subsequentCall)
         {
-            MainStackLayout.Children.Add(_citiesMapView);
+            MainGridLayout.ColumnDefinitions.Add(_cityDetailsColumn);
+            _currentCityDetails = _emptyStackLayout;
+            MainGridLayout.Children.Add(_currentCityDetails, 1, 0);
+            MainGridLayout.Children.Add(_citiesMapView, 1, 1);
 
             _citiesListView.ItemTapped += CityList_ItemTappedHorizontal;
             if (subsequentCall)
@@ -122,20 +139,37 @@
 
             await Navigation.PushAsync(cityDetailsPage);
 
-            Settings.Instance.LocaleChanged += Settings_LocaleChanged;
+            Settings.Instance.LocaleChanged += Settings_LocaleChanged_Vertical;
         }
 
         private void CityList_ItemTappedHorizontal(object sender, ItemTappedEventArgs e)
         {
             var selectedCity = ((ListView)sender).SelectedItem as CityViewModel;
-
+            ShowCityDetails(selectedCity);
             _citiesMapView.CenterOnPosition(selectedCity.Coordinates);
+
+            Settings.Instance.LocaleChanged += Settings_LocaleChanged_Horizontal;
         }
 
-        private async void Settings_LocaleChanged(object sender, System.EventArgs e)
+        private void ShowCityDetails(CityViewModel selectedCity)
+        {
+            MainGridLayout.Children.Remove(_currentCityDetails);
+            var newCityDetails = new ScrollView(){ Content = new CityDetailsView() { BindingContext = selectedCity }};
+            _currentCityDetails = newCityDetails;
+            MainGridLayout.Children.Add(_currentCityDetails, 1, 0);
+        }
+
+        private async void Settings_LocaleChanged_Vertical(object sender, System.EventArgs e)
         {
             await Navigation.PopAsync();
-            Settings.Instance.LocaleChanged -= Settings_LocaleChanged;
+            Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Vertical;
+        }
+
+        private void Settings_LocaleChanged_Horizontal(object sender, EventArgs e)
+        {
+
+            ///TODO fix orientation change on different tab
+            Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Horizontal;
         }
 
         private StackOrientation DetermineOrientation(double width, double height)

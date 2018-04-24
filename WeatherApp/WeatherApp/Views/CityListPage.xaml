@@ -2,22 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.CityListPage">
-    <StackLayout x:Name="MainStackLayout"
-                 Orientation="Horizontal">
-    </StackLayout>
-    <!--<Grid 
-        x:Name="MainGridLayout" 
-        Orientation="Horizontal">
+    <Grid 
+        x:Name="MainGridLayout">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition 
                 x:Name="CityListColumn"
-                Width="*" />
-            <ColumnDefinition 
-                x:Name="CityMapColumn"
-                Width="*" />
+                Width="1*"
+                Grid.RowSpan="2"/>
         </Grid.ColumnDefinitions>
-    </Grid>-->
+    </Grid>
 </ContentPage>
