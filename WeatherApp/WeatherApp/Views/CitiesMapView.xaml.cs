@@ -19,7 +19,6 @@
         {
             InitializeComponent();
             CitiesMap.Tapped += CitiesMap_Tapped;
-            CitiesMap.CustomPins = new List<CustomPin>();
         }
 
         private MapViewModel ViewModel { get => BindingContext as MapViewModel; }
@@ -48,12 +47,28 @@
             {
                 cities.ForEach(c =>
                 {
-                    CustomPin pin = new CustomPin()
+                    CustomPin pin;
+                    switch (Device.RuntimePlatform)
                     {
-                        Label = $"{c.Name}{Environment.NewLine}{Resx.AppResources.WindDirection}: {c.WindAngle}{Environment.NewLine}{c.WeatherMain}",
-                        Type = PinType.Place,
-                        Position = c.Coordinates
-                    };
+                        case Device.iOS:
+                            pin = new CustomPin()
+                            {
+                                Label = $"{c.Name}",
+                                Address = $"{c.WeatherMain}, {Resx.AppResources.WindDirection}: {c.WindAngle}",
+                                Type = PinType.Place,
+                                Position = c.Coordinates
+                            };
+                            break;
+                        default:
+                            pin = new CustomPin()
+                            {
+                                Label = $"{c.Name}{Environment.NewLine}{Resx.AppResources.WindDirection}: {c.WindAngle}{Environment.NewLine}{c.WeatherMain}",
+                                Type = PinType.Place,
+                                Position = c.Coordinates
+                            };
+                            break;
+                    }
+
                     CitiesMap.Pins.Add(pin);
                     CitiesMap.CustomPins.Add(pin);
                 });

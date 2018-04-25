@@ -19,8 +19,8 @@ namespace WeatherApp.iOS.Renderers
     public class ExtMapRenderer : MapRenderer
     {
         private readonly UITapGestureRecognizer _tapRecogniser;
-        private UIView customPinView;
-        private List<CustomPin> customPins;
+        private UIView _customPinView;
+        private List<CustomPin> _customPins;
 
         public ExtMapRenderer()
         {
@@ -51,7 +51,6 @@ namespace WeatherApp.iOS.Renderers
                 {
                     nativeMap.RemoveAnnotations(nativeMap.Annotations);
                     nativeMap.GetViewForAnnotation = null;
-                    nativeMap.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                     nativeMap.DidSelectAnnotationView -= OnDidSelectAnnotationView;
                     nativeMap.DidDeselectAnnotationView -= OnDidDeselectAnnotationView;
                     nativeMap.RemoveGestureRecognizer(_tapRecogniser);
@@ -62,10 +61,9 @@ namespace WeatherApp.iOS.Renderers
             {
                 var formsMap = (ExtMap)e.NewElement;
                 var nativeMap = Control as MKMapView;
-                customPins = formsMap.CustomPins;
+                _customPins = formsMap.CustomPins;
 
                 nativeMap.GetViewForAnnotation = GetViewForAnnotation;
-                nativeMap.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
                 nativeMap.DidSelectAnnotationView += OnDidSelectAnnotationView;
                 nativeMap.DidDeselectAnnotationView += OnDidDeselectAnnotationView;
                 nativeMap.AddGestureRecognizer(_tapRecogniser);
@@ -83,7 +81,7 @@ namespace WeatherApp.iOS.Renderers
             if (customPin == null)
             {
                 throw new Exception("Custom pin not found");
-            }
+            }            
 
             annotationView = mapView.DequeueReusableAnnotation(customPin.Id.ToString());
             if (annotationView == null)
@@ -91,30 +89,25 @@ namespace WeatherApp.iOS.Renderers
                 annotationView = new CustomMKAnnotationView(annotation, customPin.Id.ToString())
                 {
                     CalloutOffset = new CGPoint(0, 0),
-                    RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure)
+                    Image = UIImage.FromFile("pin.png"),
+                    Id = customPin.Id.ToString()
                 };
-                ((CustomMKAnnotationView)annotationView).Id = customPin.Id.ToString();
             }
             annotationView.CanShowCallout = true;
 
             return annotationView;
         }
 
-        void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
-        {
-            var customView = e.View as CustomMKAnnotationView;
-        }
-
         void OnDidSelectAnnotationView(object sender, MKAnnotationViewEventArgs e)
         {
             var customView = e.View as CustomMKAnnotationView;
-            customPinView = new UIView();
+            _customPinView = new UIView();
 
             if (customView.Id == "Xamarin")
             {
-                customPinView.Frame = new CGRect(0, 0, 200, 84);
-                customPinView.Center = new CGPoint(0, -(e.View.Frame.Height + 75));
-                e.View.AddSubview(customPinView);
+                _customPinView.Frame = new CGRect(0, 0, 200, 84);
+                _customPinView.Center = new CGPoint(0, -(e.View.Frame.Height + 75));
+                e.View.AddSubview(_customPinView);
             }
         }
 
@@ -122,9 +115,9 @@ namespace WeatherApp.iOS.Renderers
         {
             if (!e.View.Selected)
             {
-                customPinView.RemoveFromSuperview();
-                customPinView.Dispose();
-                customPinView = null;
+                _customPinView.RemoveFromSuperview();
+                _customPinView.Dispose();
+                _customPinView = null;
             }
         }
 
@@ -140,13 +133,14 @@ namespace WeatherApp.iOS.Renderers
         CustomPin GetCustomPin(MKPointAnnotation annotation)
         {
             var position = new Position(annotation.Coordinate.Latitude, annotation.Coordinate.Longitude);
-            foreach (var pin in customPins)
+            foreach (var pin in _customPins)
             {
                 if (pin.Position == position)
                 {
                     return pin;
                 }
             }
+
             return null;
         }
     }

@@ -24,7 +24,7 @@
         /// </summary>
         public ExtMap()
         {
-
+            CustomPins = new List<CustomPin>();
         }
 
         /// <summary>
@@ -34,7 +34,7 @@
         public ExtMap(MapSpan region)
             : base(region)
         {
-
+            CustomPins = new List<CustomPin>();
         }
 
         #endregion
