@@ -21,10 +21,12 @@
 
             var page = new TabbedPage();
             var cities = new ObservableCollection<CityViewModel>();
-            var cityListTab = new NavigationPage(new CityListPage()
+            CityListPage cityListPage = new CityListPage()
             {
                 BindingContext = new CityListViewModel(cities)
-            });
+            };
+            var cityListTab = new NavigationPage(cityListPage);
+            cityListTab.Popped += (s, e) => { cityListPage.CityDetailsViewClosed(); };
             cityListTab.SetBinding(Page.TitleProperty, new Binding("CitiesText", source: LocalizedStringProvider.Instance));
 
             page.Children.Add(cityListTab);

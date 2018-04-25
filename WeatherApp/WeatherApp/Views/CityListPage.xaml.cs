@@ -1,6 +1,8 @@
 ﻿namespace WeatherApp.Views
 {
     using System;
+    using System.Threading.Tasks;
+    using WeatherApp.Helpers;
     using WeatherApp.Helpers.AppSettings;
     using WeatherApp.ViewModels;
     using Xamarin.Forms;
@@ -18,6 +20,7 @@
         private bool _initialized = false;
         private bool _subscribedLocaleChangeVertical = false;
         private bool _subscribedLocaleChangeHorizontal = false;
+        private bool _cityDetailsViewShowing = false;
 
         public CityListPage()
         {
@@ -25,6 +28,11 @@
         }
 
         private CityListViewModel ViewModel => BindingContext as CityListViewModel;
+
+        internal void CityDetailsViewClosed()
+        {
+            _cityDetailsViewShowing = false;
+        }
 
         protected override void OnSizeAllocated(double width, double height)
         {
@@ -34,7 +42,11 @@
                 _width = width;
                 _height = height;
 
-                var newOrientation = DetermineOrientation(width, height);
+                var newOrientation = ViewHelper.DetermineOrientation(width, height);
+                if (_cityDetailsViewShowing && newOrientation == StackOrientation.Horizontal)
+                {
+                    CloseCityDetailsView();
+                }
                 if (_initialized && _orientation != newOrientation)
                 {
                     _orientation = newOrientation;
@@ -139,6 +151,7 @@
                 BindingContext = selectedObject
             };
 
+            _cityDetailsViewShowing = true;
             await Navigation.PushAsync(cityDetailsPage);
 
             if (!_subscribedLocaleChangeVertical)
@@ -151,7 +164,7 @@
         private void CityList_ItemTappedHorizontal(object sender, ItemTappedEventArgs e)
         {
             var selectedCity = ((ListView)sender).SelectedItem as CityViewModel;
-            ShowCityDetails(selectedCity);
+            ShowCityDetailsInGrid(selectedCity);
             _citiesMapView.CenterOnPosition(selectedCity.Coordinates);
 
             if (!_subscribedLocaleChangeHorizontal)
@@ -161,7 +174,7 @@
             }
         }
 
-        private void ShowCityDetails(CityViewModel selectedCity)
+        private void ShowCityDetailsInGrid(CityViewModel selectedCity)
         {
             MainGridLayout.Children.Remove(_currentCityDetails);
             var newCityDetails = new ScrollView(){ Content = new CityDetailsView() { BindingContext = selectedCity }};
@@ -171,7 +184,7 @@
 
         private async void Settings_LocaleChanged_Vertical(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await CloseCityDetailsView();
             if (_subscribedLocaleChangeVertical)
             {
                 Settings.Instance.LocaleChanged -= Settings_LocaleChanged_Vertical;
@@ -192,16 +205,10 @@
             }
         }
 
-        private StackOrientation DetermineOrientation(double width, double height)
+        private async Task CloseCityDetailsView()
         {
-            if (height > width)
-            {
-                return StackOrientation.Vertical;
-            }
-            else
-            {
-                return StackOrientation.Horizontal;
-            }
+            CityDetailsViewClosed();
+            await Navigation.PopAsync();
         }
     }
 }
