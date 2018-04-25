@@ -159,8 +159,14 @@
   <data name="MapText" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="NoWeatherReported" xml:space="preserve">
+    <value>No weather anomalies reported</value>
+  </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="WeatherLoadErrorMessage" xml:space="preserve">
+    <value>Error loading weather</value>
   </data>
   <data name="WindDirection" xml:space="preserve">
     <value>Wind direction</value>

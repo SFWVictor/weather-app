@@ -187,11 +187,29 @@ namespace WeatherApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Погодные аномалии отсутствуют.
+        /// </summary>
+        public static string NoWeatherReported {
+            get {
+                return ResourceManager.GetString("NoWeatherReported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настройки.
         /// </summary>
         public static string SettingsText {
             get {
                 return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка загрузки погоды.
+        /// </summary>
+        public static string WeatherLoadErrorMessage {
+            get {
+                return ResourceManager.GetString("WeatherLoadErrorMessage", resourceCulture);
             }
         }
         

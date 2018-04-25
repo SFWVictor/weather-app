@@ -5,13 +5,20 @@
     using WeatherApp.Models;
     using WeatherApp.Helpers;
     using Xamarin.Forms.Maps;
+    using WeatherApp.Models.ResponseObjects;
 
     public class CityViewModel : City
     {
-        private const string WeatherLoadErrorMessage = "Error loading weather";
-        private const char WindAngleDefault = 'X';
-        private string _weatherMain = null;
-        private char _windAngle = WindAngleDefault;
+        private const char WindAngleError = 'X';
+        private const char WestArrow = (char)8592;
+        private const char NorthWestArrow = (char)8598;
+        private const char NorthArrow = (char)8594;
+        private const char NorthEastArrow = (char)8599;
+        private const char EastArrow = (char)8593;
+        private const char SouthEastArrow = (char)8600;
+        private const char SouthArrow = (char)8595;
+        private const char SouthWestArrow = (char)8601;
+        private WeatherMainModel _weatherMainModel = null;
 
         public CityViewModel(City city) :
             base(city.Id, city.Name, city.Coordinates, city.Description, city.SmallImageUrl)
@@ -27,66 +34,82 @@
         {
             get
             {
-                if (_weatherMain is null || _weatherMain == WeatherLoadErrorMessage)
+                string weatherMain;
+
+                LoadWeather();
+                if (_weatherMainModel is null || _weatherMainModel.Main is null)
                 {
-                    _weatherMain = WeatherLoadErrorMessage;
-                    try
-                    {
-                        _weatherMain = WeatherService.GetWeather(Id).Weather.FirstOrDefault().Main;
-                    }
-                    catch
-                    {
-                    }
+                    weatherMain = Resx.AppResources.WeatherLoadErrorMessage;
+                }
+                else
+                {
+                    weatherMain = _weatherMainModel?.Weather?.FirstOrDefault()?.Main ?? Resx.AppResources.NoWeatherReported;
                 }
 
-                return _weatherMain;
+                return weatherMain;
             }
         }
 
-        public char WindAngle
+        public string WindAngle
         {
             get
             {
-                if (_windAngle == WindAngleDefault)
+                char windAngle;
+                LoadWeather();
+                if (_weatherMainModel is null || _weatherMainModel.Wind is null)
                 {
-                    int angle = 0;
-                    try
-                    {
-                        angle = WeatherService.GetWeather(Id).Wind.Angle;
-                    }
-                    catch
-                    {
-                    }
-
-                    _windAngle = GetArrow(angle);
+                    windAngle = WindAngleError;
+                }
+                else
+                {
+                    int angle = _weatherMainModel.Wind.Angle;
+                    windAngle = GetArrowSymbol(angle);
                 }
 
-                return _windAngle;
+                return windAngle.ToString();
             }
         }
 
-        public char GetArrow(int angle)
+        private char GetArrowSymbol(int angle)
         {
-            char leftArrow = (char)8592;//(char)8592; 
-            char rightArrow = (char)8593;//(char)8593; 
-            char upArrow = (char)8594;//(char)8594; 
-            char downArrow = (char)8595;//(char)8595; 
             const int cicrle = 360;
-            const int sector = 45;
-            int typeArrow = (angle % cicrle) / sector;
+            const int sector = 15;
+            int angleSector = (angle % cicrle) / sector + 1;
 
-            switch (typeArrow)
+            switch (angleSector)
             {
-                case int i when (i < 2):
-                    return upArrow;
-                case int i when (i < 4 && i >= 2):
-                    return rightArrow;
-                case int i when (i < 6 && i >= 4):
-                    return downArrow;
-                case int i when (i < 8 && i >= 6):
-                    return leftArrow;
+                case int i when (i <= 2 || i >= 23):
+                    return NorthArrow;
+                case int i when (i >= 3 && i <= 4):
+                    return NorthEastArrow;
+                case int i when (i >= 5 && i <= 8):
+                    return EastArrow;
+                case int i when (i >= 9 && i <= 10):
+                    return SouthEastArrow;
+                case int i when (i >= 11 && i <= 14):
+                    return SouthArrow;
+                case int i when (i >= 15 && i <= 16):
+                    return SouthWestArrow;
+                case int i when (i >= 17 && i <= 20):
+                    return WestArrow;
+                case int i when (i >= 21 && i <= 22):
+                    return NorthWestArrow;
                 default:
                     throw new ArgumentException(nameof(angle));
+            }
+        }
+
+        private void LoadWeather()
+        {
+            try
+            {
+                if (_weatherMainModel is null)
+                {
+                    _weatherMainModel = WeatherService.GetWeather(Id);
+                }
+            }
+            catch
+            {
             }
         }
     }

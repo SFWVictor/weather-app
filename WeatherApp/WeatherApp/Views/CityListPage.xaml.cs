@@ -207,8 +207,11 @@
 
         private async Task CloseCityDetailsView()
         {
-            CityDetailsViewClosed();
-            await Navigation.PopAsync();
+            if (_cityDetailsViewShowing)
+            {
+                CityDetailsViewClosed();
+                await Navigation.PopAsync();
+            }
         }
     }
 }

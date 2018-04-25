@@ -159,8 +159,14 @@
   <data name="MapText" xml:space="preserve">
     <value>Карта</value>
   </data>
+  <data name="NoWeatherReported" xml:space="preserve">
+    <value>Погодные аномалии отсутствуют</value>
+  </data>
   <data name="SettingsText" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="WeatherLoadErrorMessage" xml:space="preserve">
+    <value>Ошибка загрузки погоды</value>
   </data>
   <data name="WindDirection" xml:space="preserve">
     <value>Направление ветра</value>
