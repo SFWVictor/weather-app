@@ -7,6 +7,6 @@
         [JsonProperty("speed")]
         public string Speed { get; set; }
         [JsonProperty("deg")]
-        public int Angle { get; set; }
+        public float Angle { get; set; }
     }
 }

@@ -62,8 +62,8 @@
                 }
                 else
                 {
-                    int angle = _weatherMainModel.Wind.Angle;
-                    windAngle = GetArrowSymbol(angle);
+                    float angle = _weatherMainModel.Wind.Angle;
+                    windAngle = GetArrowSymbol((int)Math.Truncate(angle));
                 }
 
                 return windAngle.ToString();
