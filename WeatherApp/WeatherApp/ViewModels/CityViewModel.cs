@@ -43,7 +43,14 @@
                 }
                 else
                 {
-                    weatherMain = _weatherMainModel?.Weather?.FirstOrDefault()?.Main ?? Resx.AppResources.NoWeatherReported;
+                    if (_weatherMainModel?.Weather?.FirstOrDefault()?.Main is null)
+                    {
+                        weatherMain = Resx.AppResources.NoWeatherReported;
+                    }
+                    else
+                    {
+                        weatherMain = $"{_weatherMainModel.Weather.First().Main}, {_weatherMainModel.Main.Temp}°C";
+                    }
                 }
 
                 return weatherMain;
