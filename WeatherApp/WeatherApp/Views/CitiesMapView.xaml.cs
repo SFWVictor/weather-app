@@ -85,20 +85,20 @@
             if (cities.Count != 0)
             {
                 var pos = e.Position;
-                Position closestCity = cities.First().Coordinates;
-                double minDistance = double.MaxValue;
+                CityViewModel closestCity = cities.First();
+                double minDistance = pos.GetDistance(closestCity.Coordinates);
 
                 foreach (var city in cities)
                 {
                     double distance = pos.GetDistance(city.Coordinates);
-                    if (closestCity != city.Coordinates && distance < minDistance)
+                    if ((closestCity.Coordinates != city.Coordinates) && (distance < minDistance))
                     {
-                        closestCity = city.Coordinates;
+                        closestCity = city;
                         minDistance = distance;
                     }
                 }
 
-                resultPosition = closestCity;
+                resultPosition = closestCity.Coordinates;
             }
             else
             {
